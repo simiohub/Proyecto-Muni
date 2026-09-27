@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block titulo %}Listado - {{ titulo }}{% endblock %}
+{% block contenido %}
+<h1 class="text-center text-institucional">{{ titulo }}</h1>
+<p class="text-center text-muted">Filtrando por prioridad: {{ prioridad|default:"todas" }} ({{ conteo }} resultado{{ conteo|pluralize }})</p>
+
+<div class="mb-3 d-flex gap-2 justify-content-center flex-wrap">
+    <a href="{% url 'departamentos_listado' %}" class="btn btn-sm btn-outline-institucional">Todas</a>
+    {% for clave, cantidad in por_prioridad.items %}
+    <a href="{% url 'departamentos_listado' %}?prioridad={{ clave }}" class="btn btn-sm btn-outline-institucional">
+        {{ clave|capfirst }} ({{ cantidad }})
+    </a>
+    {% endfor %}
+</div>
+
+{% if departamentos %}
+<div class="row g-3">
+    {% for d in departamentos %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm card-institucional">
+            <div class="card-body">
+                <h5 class="card-title text-institucional">{{ d.nombre }}</h5>
+                <p class="card-text text-muted">{{ d.descripcion }}</p>
+                <ul class="list-unstyled small">
+                    <li><strong>Encargado:</strong> {{ d.encargado }}</li>
+                    <li><strong>Horario:</strong> {{ d.horario }}</li>
+                    <li><strong>Teléfono:</strong> {{ d.telefono }}</li>
+                </ul>
+                {% if d.prioridad == 'alta' %}
+                <span class="badge bg-danger">Prioridad alta</span>
+                {% elif d.prioridad == 'media' %}
+                <span class="badge bg-warning text-dark">Prioridad media</span>
+                {% else %}
+                <span class="badge bg-secondary">Prioridad baja</span>
+                {% endif %}
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{% url 'departamentos_detalle' d.id %}" class="btn btn-sm btn-institucional">Ver detalle</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-center text-muted">No hay departamentos para la prioridad seleccionada.</p>
+{% endif %}
+{% endblock %}

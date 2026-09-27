@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block titulo %}Departamentos - {{ titulo }}{% endblock %}
+{% block contenido %}
+<div class="text-center py-4">
+    <h1 class="text-institucional">{{ titulo }}</h1>
+    <p class="lead">Información de los departamentos del municipio.</p>
+</div>
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 text-center card-institucional">
+            <div class="card-body">
+                <h2 class="display-4 text-institucional">{{ total }}</h2>
+                <p class="card-text">Departamentos registrados</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center card-institucional">
+            <div class="card-body">
+                <h2 class="display-4 text-institucional">{{ cantidad_altas }}</h2>
+                <p class="card-text">Con prioridad alta</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 text-center card-institucional">
+            <div class="card-body">
+                <h2 class="display-4 text-institucional">{{ porcentaje_prioritarios }}%</h2>
+                <p class="card-text">De departamentos prioritarios</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center mt-4">
+    <a href="{% url 'departamentos_listado' %}" class="btn btn-institucional btn-lg">Ver listado completo</a>
+</div>
+{% endblock %}

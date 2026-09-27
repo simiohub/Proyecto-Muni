@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ titulo }}{% endblock %}
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm card-institucional">
+            <div class="card-header bg-institucional text-white">
+                <h2 class="h4 mb-0">{{ departamento.nombre }}</h2>
+            </div>
+            <div class="card-body">
+                <p>{{ departamento.descripcion }}</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Encargado:</strong> {{ departamento.encargado }}</li>
+                    <li class="list-group-item"><strong>Horario:</strong> {{ departamento.horario }}</li>
+                    <li class="list-group-item"><strong>Teléfono:</strong> {{ departamento.telefono }}</li>
+                    <li class="list-group-item">
+                        <strong>Prioridad:</strong>
+                        {% if departamento.prioridad == 'alta' %}
+                        <span class="badge bg-danger">Alta</span>
+                        {% elif departamento.prioridad == 'media' %}
+                        <span class="badge bg-warning text-dark">Media</span>
+                        {% else %}
+                        <span class="badge bg-secondary">Baja</span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'departamentos_listado' %}" class="btn btn-institucional">Volver al listado</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

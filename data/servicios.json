@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nombre": "Retiro de escombros",
+        "categoria": "Aseo",
+        "descripcion": "Servicio de retiro de escombros y muebles en desuso desde el domicilio.",
+        "plazo_dias": 7,
+        "gratuito": true,
+        "estado": "disponible"
+    },
+    {
+        "id": 2,
+        "nombre": "Vieja copuchenta",
+        "categoria": "Social",
+        "descripcion": "Atención y orientación para familias en situación de vulnerabilidad.",
+        "plazo_dias": 3,
+        "gratuito": true,
+        "estado": "disponible"
+    },
+    {
+        "id": 3,
+        "nombre": "Permiso de circulación",
+        "categoria": "Trámite",
+        "descripcion": "Obtención y renovación del permiso de circulación de vehículos.",
+        "plazo_dias": 1,
+        "gratuito": false,
+        "estado": "disponible"
+    },
+    {
+        "id": 4,
+        "nombre": "Poda de árboles",
+        "categoria": "Áreas verdes",
+        "descripcion": "Solicitud de poda o mantención de árboles en espacios públicos.",
+        "plazo_dias": 15,
+        "gratuito": true,
+        "estado": "con restricciones"
+    },
+    {
+        "id": 5,
+        "nombre": "Certificado de residencia",
+        "categoria": "Trámite",
+        "descripcion": "Emisión de certificado que acredita el domicilio del vecino.",
+        "plazo_dias": 2,
+        "gratuito": false,
+        "estado": "disponible"
+    }
+]

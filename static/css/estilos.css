@@ -1,0 +1,71 @@
+:root {
+    --color-primario: #8B1D19;
+    --color-primario-oscuro: #6e1713;
+    --color-primario-claro: #a8322c;
+    --color-blanco: #ffffff;
+}
+
+/* Fondo institucional */
+.bg-institucional {
+    background-color: var(--color-primario) !important;
+}
+
+/* Texto institucional */
+.text-institucional {
+    color: var(--color-primario) !important;
+}
+
+/* Botones */
+.btn-institucional {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+}
+.btn-institucional:hover {
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-blanco);
+}
+.btn-outline-institucional {
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    background-color: transparent;
+}
+.btn-outline-institucional:hover {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+/* Tablas */
+.table-institucional thead {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+/* Navbar */
+.navbar-institucional {
+    background-color: var(--color-primario) !important;
+}
+
+/* Footer */
+.footer-institucional {
+    background-color: var(--color-primario) !important;
+}
+
+/* Tarjetas */
+.card-institucional {
+    border-top: 4px solid var(--color-primario);
+}
+
+/* Enlaces del navbar */
+.navbar-institucional .navbar-nav .nav-link,
+.navbar-institucional .navbar-brand {
+    color: var(--color-blanco);
+}
+.navbar-institucional .navbar-nav .nav-link:hover,
+.navbar-institucional .navbar-nav .nav-link:focus {
+    color: #f0c0be;
+}
+.navbar-institucional .dropdown-menu .dropdown-item:hover {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}

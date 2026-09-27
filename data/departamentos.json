@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nombre": "Dirección de chueco",
+        "encargado": "María Fernández",
+        "horario": "08:30 - 14:00",
+        "telefono": "+56 51 222 0001",
+        "descripcion": "Responsable de permisos de construcción, urbanización y revisión de proyectos.",
+        "prioridad": "alta"
+    },
+    {
+        "id": 2,
+        "nombre": "Dirección de Desarrollo Comunitario",
+        "encargado": "Jorge Pizarro",
+        "horario": "08:30 - 17:00",
+        "telefono": "+56 51 222 0002",
+        "descripcion": "Gestiona programas sociales, juntas de vecinos y apoyo a organizaciones comunitarias.",
+        "prioridad": "alta"
+    },
+    {
+        "id": 3,
+        "nombre": "Dirección de Medio Ambiente",
+        "encargado": "Camila Rojas",
+        "horario": "09:00 - 14:00",
+        "telefono": "+56 51 222 0003",
+        "descripcion": "Fiscalización de áreas verdes, reciclaje y campañas de limpieza.",
+        "prioridad": "media"
+    },
+    {
+        "id": 4,
+        "nombre": "Dirección de Seguridad Pública",
+        "encargado": "Rodrigo Salas",
+        "horario": "08:00 - 20:00",
+        "telefono": "+56 51 222 0004",
+        "descripcion": "Coordinación con carabineros, cámaras de vigilancia y patrullaje preventivo.",
+        "prioridad": "alta"
+    },
+    {
+        "id": 5,
+        "nombre": "Dirección de Turismo",
+        "encargado": "Valentina Cid",
+        "horario": "09:00 - 18:00",
+        "telefono": "+56 51 222 0005",
+        "descripcion": "Promoción turística, oficinas de información y registro de actividades locales.",
+        "prioridad": "baja"
+    }
+]
