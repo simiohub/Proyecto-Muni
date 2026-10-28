@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block titulo %}Solicitudes de servicio{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+    <h1 class="h2 mb-0">Solicitudes de servicio</h1>
+    {% if perms.serviciosApp.add_solicitudservicio %}<a class="btn btn-primary" href="{% url 'solicitud_crear' %}">Nueva solicitud</a>{% endif %}
+</div>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-5"><label class="visually-hidden" for="search">Buscar</label><input id="search" class="form-control" type="search" name="q" value="{{ query }}" placeholder="Servicio, motivo o solicitante"></div>
+    <div class="col-md-4"><label class="visually-hidden" for="estado">Estado</label><select class="form-select" id="estado" name="estado"><option value="">Todos los estados</option>{% for value,label in estados %}<option value="{{ value }}" {% if estado == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+    <div class="col-auto"><button class="btn btn-outline-primary" type="submit">Filtrar</button></div>
+</form>
+<div class="table-responsive"><table class="table table-striped align-middle">
+    <thead><tr><th>Número</th><th>Servicio</th><th>Solicitante</th><th>Fecha</th><th>Estado</th><th></th></tr></thead>
+    <tbody>
+        {% for solicitud in solicitudes %}<tr>
+            <td>#{{ solicitud.pk }}</td><td>{{ solicitud.servicio.nombre }}</td><td>{{ solicitud.solicitante.get_full_name|default:solicitud.solicitante.username }}</td><td>{{ solicitud.creada_en|date:'d/m/Y H:i' }}</td><td>{{ solicitud.get_estado_display }}</td>
+            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'solicitud_detalle' solicitud.pk %}">Ver</a></td>
+        </tr>{% empty %}<tr><td colspan="6">No hay solicitudes para estos filtros.</td></tr>{% endfor %}
+    </tbody>
+</table></div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %}Mantenedor de servicios{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+    <h1 class="h2 mb-0">Servicios</h1>
+    {% if perms.serviciosApp.add_servicio %}<a class="btn btn-primary" href="{% url 'servicios_gestion_crear' %}">Nuevo servicio</a>{% endif %}
+</div>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-sm-8 col-md-6"><label class="visually-hidden" for="search">Buscar</label><input id="search" class="form-control" type="search" name="q" value="{{ query }}" placeholder="Nombre, categoría o descripción"></div>
+    <div class="col-auto"><button class="btn btn-outline-primary" type="submit">Buscar</button></div>
+    {% if query %}<div class="col-auto"><a class="btn btn-link" href="{% url 'servicios_gestion_lista' %}">Limpiar</a></div>{% endif %}
+</form>
+<div class="table-responsive"><table class="table table-striped align-middle">
+    <thead><tr><th>Servicio</th><th>Categoría</th><th>Plazo</th><th>Estado</th><th>Acciones</th></tr></thead>
+    <tbody>
+        {% for servicio in servicios %}<tr>
+            <td>{{ servicio.nombre }}</td><td>{{ servicio.categoria }}</td><td>{{ servicio.plazo_dias }} día(s)</td><td>{{ servicio.get_estado_display }}</td>
+            <td class="text-nowrap">
+                {% if perms.serviciosApp.change_servicio %}<a class="btn btn-sm btn-outline-primary" href="{% url 'servicios_gestion_editar' servicio.pk %}">Editar</a>{% endif %}
+                {% if perms.serviciosApp.delete_servicio %}<a class="btn btn-sm btn-outline-danger" href="{% url 'servicios_gestion_eliminar' servicio.pk %}">Eliminar</a>{% endif %}
+            </td>
+        </tr>{% empty %}<tr><td colspan="5">No hay servicios que coincidan con la búsqueda.</td></tr>{% endfor %}
+    </tbody>
+</table></div>
+{% endblock %}

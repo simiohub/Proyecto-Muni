@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block titulo %}Panel {{ role }}{% endblock %}
+{% block contenido %}
+<h1 class="h2 mb-1">Panel {{ role }}</h1>
+<p class="text-muted">Sesión iniciada como {{ user.get_full_name|default:user.username }}</p>
+<div class="row g-3 my-3">
+    <div class="col-sm-6"><div class="border rounded p-3"><div class="text-muted">Departamentos</div><strong class="fs-4">{{ department_count }}</strong></div></div>
+    <div class="col-sm-6"><div class="border rounded p-3"><div class="text-muted">Servicios</div><strong class="fs-4">{{ service_count }}</strong></div></div>
+</div>
+<h2 class="h5 mt-4">Navegación</h2>
+<ul>
+    <li><a href="{% url 'departamentos_listado' %}">Consultar departamentos</a></li>
+    <li><a href="{% url 'servicios_listado' %}">Consultar servicios</a></li>
+    {% if perms.departamentosApp.view_departamento %}<li><a href="{% url 'departamentos_gestion_lista' %}">Mantenedor de departamentos</a></li>{% endif %}
+    {% if perms.serviciosApp.view_servicio %}<li><a href="{% url 'servicios_gestion_lista' %}">Mantenedor de servicios</a></li>{% endif %}
+    {% if perms.serviciosApp.view_solicitudservicio %}<li><a href="{% url 'solicitudes_lista' %}">Solicitudes de servicio</a></li>{% endif %}
+    {% if perms.serviciosApp.add_solicitudservicio %}<li><a href="{% url 'solicitud_crear' %}">Nueva solicitud de servicio</a></li>{% endif %}
+    {% if role == 'Administrador' %}<li><a href="{% url 'accounts:user_list' %}">Gestionar usuarios</a></li>{% endif %}
+</ul>
+{% endblock %}

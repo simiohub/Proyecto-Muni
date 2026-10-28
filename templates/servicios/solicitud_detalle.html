@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %}Solicitud #{{ solicitud.pk }}{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-start gap-3 mb-3"><div><h1 class="h2">Solicitud #{{ solicitud.pk }}</h1><p class="text-muted mb-0">Creada {{ solicitud.creada_en|date:'d/m/Y H:i' }}</p></div><span class="badge text-bg-primary">{{ solicitud.get_estado_display }}</span></div>
+<dl class="row">
+    <dt class="col-sm-3">Servicio</dt><dd class="col-sm-9">{{ solicitud.servicio.nombre }}</dd>
+    <dt class="col-sm-3">Solicitante</dt><dd class="col-sm-9">{{ solicitud.solicitante.get_full_name|default:solicitud.solicitante.username }}</dd>
+    <dt class="col-sm-3">Motivo</dt><dd class="col-sm-9">{{ solicitud.motivo|linebreaksbr }}</dd>
+    <dt class="col-sm-3">Dirección</dt><dd class="col-sm-9">{{ solicitud.direccion }}</dd>
+    <dt class="col-sm-3">Teléfono</dt><dd class="col-sm-9">{{ solicitud.telefono_contacto }}</dd>
+</dl>
+{% if puede_cambiar %}<form method="post" action="{% url 'solicitud_actualizar_estado' solicitud.pk %}" class="border-top pt-3">
+    {% csrf_token %}<label class="form-label" for="id_estado">Actualizar estado</label>{{ form.estado }}
+    <button class="btn btn-primary mt-2" type="submit">Guardar estado</button>
+</form>{% endif %}
+<a class="btn btn-outline-secondary mt-3" href="{% url 'solicitudes_lista' %}">Volver a solicitudes</a>
+{% endblock %}

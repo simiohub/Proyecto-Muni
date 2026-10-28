@@ -51,6 +51,17 @@
                             <li><a class="dropdown-item" href="{% url 'servicios_listado' %}">Listado</a></li>
                         </ul>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:dashboard' %}">Mi panel</a></li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'accounts:logout' %}" class="d-flex">
+                            {% csrf_token %}
+                            <button class="nav-link btn btn-link" type="submit">Cerrar sesión</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Iniciar sesión</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -58,6 +69,11 @@
 
     <!-- Contenido principal -->
     <main class="container my-4 flex-grow-1">
+        {% if messages %}
+        <div class="mb-3">
+            {% for message in messages %}<div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button></div>{% endfor %}
+        </div>
+        {% endif %}
         {% block contenido %}{% endblock %}
     </main>
 

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %}Mantenedor de departamentos{% endblock %}
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+    <h1 class="h2 mb-0">Departamentos</h1>
+    {% if perms.departamentosApp.add_departamento %}<a class="btn btn-primary" href="{% url 'departamentos_gestion_crear' %}">Nuevo departamento</a>{% endif %}
+</div>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-sm-8 col-md-6"><label class="visually-hidden" for="search">Buscar</label><input id="search" class="form-control" type="search" name="q" value="{{ query }}" placeholder="Nombre, encargado o descripción"></div>
+    <div class="col-auto"><button class="btn btn-outline-primary" type="submit">Buscar</button></div>
+    {% if query %}<div class="col-auto"><a class="btn btn-link" href="{% url 'departamentos_gestion_lista' %}">Limpiar</a></div>{% endif %}
+</form>
+<div class="table-responsive"><table class="table table-striped align-middle">
+    <thead><tr><th>Departamento</th><th>Encargado</th><th>Teléfono</th><th>Prioridad</th><th>Acciones</th></tr></thead>
+    <tbody>
+        {% for departamento in departamentos %}<tr>
+            <td>{{ departamento.nombre }}</td><td>{{ departamento.encargado }}</td><td>{{ departamento.telefono }}</td><td>{{ departamento.get_prioridad_display }}</td>
+            <td class="text-nowrap">
+                {% if perms.departamentosApp.change_departamento %}<a class="btn btn-sm btn-outline-primary" href="{% url 'departamentos_gestion_editar' departamento.pk %}">Editar</a>{% endif %}
+                {% if perms.departamentosApp.delete_departamento %}<a class="btn btn-sm btn-outline-danger" href="{% url 'departamentos_gestion_eliminar' departamento.pk %}">Eliminar</a>{% endif %}
+            </td>
+        </tr>{% empty %}<tr><td colspan="5">No hay departamentos que coincidan con la búsqueda.</td></tr>{% endfor %}
+    </tbody>
+</table></div>
+{% endblock %}
